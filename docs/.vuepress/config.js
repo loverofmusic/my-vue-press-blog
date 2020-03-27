@@ -6,7 +6,7 @@ module.exports = {
   // dest: 'gb-pages',//打包目录
   base: "/my-vue-press-blog/",
   title: "Nebulas的日志",
-  description: "记录所学所思所做",
+  description: "记录 · 所学 · 所思 · 所做",
   head: [
     ["link", { rel: "icon", href: "/vuepress/QR-code.png" }],
     // ['link', { rel: 'icon', href: 'https://infinitypro-img.infinitynewtab.com/custom-icon/8001de1jd3n68lbfnxxt564xvb0vl5.png?imageMogr2/thumbnail/240x/format/webp/blur/1x0/quality/100|imageslim' }],
