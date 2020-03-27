@@ -1,18 +1,34 @@
 ---
-title: 关于面试
-date: 2020-02-27
-sidebarDepth: 0
+title: 面试/Interview
+date: 2020-02-20
+isTimeLine: true
+sidebar: true
+sidebarDepth: 1
+isShowComments: false
 tags:
 - 栏目概述
 categories:
 - 栏目概述
-isShowComments: true
 ---
 
+### 栏目概述：
 
-**哥哥哥哥**
+::: tip
+这里将面试点 `分门别类` <br>
 
-![ToDo](/znote/img/essay/ToDo.png)
+旨在 `全面梳理` 整个前端知识 `框架体系`，`提炼` 出面试时的 `交流层次` <br>
+
+使得回答时抓住 `关键点`，并可以一层一层 `按需拓展`
+:::
+
+#### GitHub 相关 `项目链接` 如下：
+
+- [InterviewMap/CS-Interview-Knowledge-Map](https://github.com/InterviewMap/CS-Interview-Knowledge-Map)
+
+- [KieSun/InterviewMap](https://github.com/KieSun/InterviewMap)
+
+
+![ToDo](/my-vue-press-blog/img/interview/interview.png)
 
 
 > 从小事情做起，从细节入手。<br>
@@ -23,6 +39,8 @@ isShowComments: true
 `gege`
 
 短发就到家
+
+**哥哥哥哥**
 
 - 发动机
   - dfa
@@ -69,6 +87,6 @@ export default {
 }
 ```
 
-## 有哪几种方式
+##### 有哪几种方式
 
 的方法解放军大家克服恐惧
