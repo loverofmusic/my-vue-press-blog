@@ -31,22 +31,9 @@ categories:
 ![ToDo](/my-vue-press-blog/img/interview/interview.png)
 
 
-> 从小事情做起，从细节入手。<br>
-> 首先恢复信心，重新激发生活的热情！你可以采取以下建议：
 
-![](https://images.unsplash.com/photo-1512341350577-a09358311cb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
+----------------------------------------
 
-`gege`
-
-短发就到家
-
-**哥哥哥哥**
-
-- 发动机
-  - dfa
-- feaf
-
-[链接](www.baidu.com)
 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
@@ -87,6 +74,4 @@ export default {
 }
 ```
 
-##### 有哪几种方式
 
-的方法解放军大家克服恐惧
