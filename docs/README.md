@@ -1,7 +1,7 @@
 ---
 home: true
-heroImage: '/vuepress/interview.png'
-faceImage: '/vuepress/interview.png'
+heroImage: '/vuepress/QR-code.png'
+faceImage: '/vuepress/QR-code.png'
 heroImageStyle: {
   # maxWidth: '800px',
   # width: '800px',
@@ -27,7 +27,10 @@ actionLink: /accumulation/
 # - title: 
 #   details: 把所有的希望给明天
 # footer: MIT Licensed | Copyright © 2018-present Evan You
+
 ---
+
+<CanvasNest color='62,175,124' zIndex='2'></CanvasNest>
 
 <!-- <Clock/> -->
 
@@ -58,7 +61,7 @@ actionLink: /accumulation/
 ::: -->
 
 
-<CanvasNest color='62,175,124' zIndex='-2'></CanvasNest>
+
 
 <style>
 .home .content__default:not(.custom) {
@@ -72,11 +75,56 @@ actionLink: /accumulation/
 .home img {
    transform: scale(0.8,0.8) !important;
    transition: all 1s!important;
+   animation:mymove 5s infinite;
+  -webkit-animation:mymove 5s infinite; /*Safari and Chrome*/
 }
 .home img:hover {
    transform: scale(1)!important;
    transition:all 2s !important;
 }
+
+@keyframes mymove
+{
+    0% { 
+      opacity: 1;
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); 
+    }
+
+    45%{
+      opacity: 0.8;
+      -webkit-transform: scale(1);
+      transform: scale(1); 
+    }
+    
+    100% { 
+      opacity: 1;
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); 
+    }
+}
+
+@-webkit-keyframes mymove /*Safari and Chrome*/
+{
+    0% { 
+      opacity: 1;
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); 
+    }
+
+    45%{
+      opacity: 0.8;
+      -webkit-transform: scale(1);
+      transform: scale(1); 
+    }
+    
+    100% { 
+      opacity: 1;
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); 
+    }
+}
+
 /* 阻止描述冒泡 */
 .home .hero .description{
     pointer-events: none;
