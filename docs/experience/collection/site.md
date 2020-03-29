@@ -16,5 +16,5 @@ categories:
 
 > 方便取色
 
-[flatuicolors](https://www.jb51.net/article/162824.htm#_label1)
+[flatuicolors](https://flatuicolors.com/)
  

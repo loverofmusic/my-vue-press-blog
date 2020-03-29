@@ -22,8 +22,11 @@ isShowComments: true
 `jsonp` `http-proxy` `nginx` `CORS` `postMessage` `document.domain` `window.name` `location.hash` `websocket`
 
 ### jsonp
-  - 原理？<u>*动态* 生成 *script* 标签，*src* 属性获取请求数据</u>（为啥动态？因为不知道你要调哪个接口，又不可能写死；为啥想到src属性？因为src属性浏览器不拦截）
-    > script img link iframe...不存在跨域请求的限制
+  - 原理？
+  > script img link iframe这类标签...不存在跨域请求的限制<br>
+
+  <u>*动态* 生成 *script* 标签，*src* 属性获取请求数据</u>（为啥动态？因为不知道你要调哪个接口，又不可能写死；为啥想到src属性？因为src属性浏览器不拦截）
+    
   - 缺点？1. 上面的原理可以看出它<u>只支持 *get* 请求</u>，不支持 *post* 请求和其他 (那么多接口要提交数据，所以。。。有些第三方平台接口会支持该方式，如天气数据平台等) 2. 不安全， *XSS跨站请求脚本攻击哇，把script标签注入多危险！*
   - 具体怎么实现？ <a href="#jsonp-detail">看代码去</a>
 
@@ -37,8 +40,13 @@ isShowComments: true
 ### websocket
 
 ### CORS (跨域资源共享)
-  - 服务器设置请求头
-> 例如：res.header('Access-Control-Allow-Origin', '*')
+  - 服务器端设置响应头，来配置允许跨域的源，还可以设置是不是允许携带Cookie
+> res.header('Access-Control-Allow-Origin', '*')<br>
+> res.header("access-cross-allow-origin", "http://....") 
+
+::: danger
+这个源写*，就不能携带Cookie
+:::
 
 ::: warning
  以下都是基于iframe
@@ -59,6 +67,18 @@ isShowComments: true
 
 ---
 #### <a name="jsonp-detail">jsonp-具体实现</a>
+
+> h5和ios通信，除了JSBridge，还有一种伪URL方式，我们在h5里面通过location.href 发一个伪URL协议，同时把我们H5里面的js通过callback方式传过去，IOS拦截到这个请求，通过解析这个协议发现是商量好的，会把我们穿过去的函数给执行
+
+> 过程： 
+::: tip
+- 先在客户端创建一个script标签，然后设置它的src属性等于 服务端提供的接口地址 并且接口地址后面加上请求参数的形式?callback=func 
+- 这个func是客户端定义的一个全局函数，这个函数将作为回调函数传给服务端 
+- 服务端接收客户端请求，callback=func 
+    - 1.准备数据 data={...}
+    - 2.给客户端返回一个类似于执行这个func函数的一个字符串数据
+- 浏览器接收到这个字符串，会将其作为js表达式执行
+:::
 
 > 对照着原理图来写吧
 
