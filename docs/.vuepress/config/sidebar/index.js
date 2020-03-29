@@ -15,9 +15,8 @@ module.exports = {
             title:'JavaScript相关',
             collapsable: true,
             children:[
-                'framework/overall.md',
-                'framework/overall.md',
-                'framework/overall.md'
+                'javascript/overall.md',
+                'javascript/ts.md'
             ]
         },
         {
@@ -106,9 +105,10 @@ module.exports = {
             title:'面试题',
             collapsable: true,
             children:[
-                'framework/overall.md',
-                'framework/overall.md',
-                'framework/overall.md'
+                'subject/console.md',
+                'subject/program.md',
+                'subject/classic.md'
+
             ]
         }
 
@@ -145,6 +145,31 @@ module.exports = {
                         '2020/02/22.md'
                     ]
                 }
+            ]
+        }
+    ],
+    '/experience/': [
+        '',
+        {
+            title:'Mac',
+            collapsable: false,
+            children: [
+                'Mac/shotcut.md',
+                'Mac/settings.md'
+            ]
+        },
+        {
+            title:'Linux',
+            collapsable: false,
+            children: [
+                'linux-all/daily.md'
+            ]
+        },
+        {
+            title:'收集',
+            collapsable: false,
+            children: [
+                'collection/site.md'
             ]
         }
     ]

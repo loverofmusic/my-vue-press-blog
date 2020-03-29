@@ -7,7 +7,7 @@ tags:
 - 同源策略
 categories:
 - 浏览器
-isShowComments: false
+isShowComments: true
 ---
 
 
@@ -34,11 +34,19 @@ isShowComments: false
   - Webpack的devServer的proxy配置项，就是通过中间件 *http-proxy* 产生一个虚拟服务器
   - *nginx* 反向代理
 
+### websocket
+
 ### CORS (跨域资源共享)
   - 服务器设置请求头
 > 例如：res.header('Access-Control-Allow-Origin', '*')
 
+::: warning
+ 以下都是基于iframe
+:::
+
 ### postMessage
+
+<a href="#post-message">看代码去</a>
 
 ### document.domain
 
@@ -46,7 +54,7 @@ isShowComments: false
 
 ### location.hash
 
-### websocket
+
 
 
 ---
@@ -77,7 +85,7 @@ isShowComments: false
 
 //第一种方式采用jQuery封装好的方法发送请求
 $.ajax({
-  url: 'http://127.0.0.1:8001/list',
+  url: 'http://127.0.0.1:8001/say',
   method: 'get',
   dataType: 'jsonp',
   success: res => {
@@ -104,7 +112,7 @@ function jsonp({ url, params, callback }) {
   });
 }
 jsonp({
-  url: "http://127.0.0.1:8001/list",
+  url: "http://127.0.0.1:8001/say?wd=我爱你",
   params: { wd: "我爱你" },
   callback: "show"
 }).then(data => {
@@ -119,11 +127,11 @@ const Koa = require("koa");
 var app = new Koa();//实例化
 var router = require("koa-router")(); /*引入是实例化路由** 推荐*/
 
-router.get("/list", ctx => {
-  let { callback } = ctx.query;
+router.get("/say", ctx => {
+  let { callback, wd } = ctx.query;
   let data = {
     code: 0,
-    message: "这是服务器端返回的数据！"
+    message: `收到${wd}，我也爱你！`
   };
   ctx.body = `${callback}(${JSON.stringify(data)})`;
 });
@@ -135,5 +143,83 @@ app.listen(8001, _ => {
 });
 
 ```
+
+---
+#### <a name="post-message">postMessage-具体实现</a>
+
+```html
+<!-- a.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a.html</title>
+  </head>
+  <body>
+    a.html
+    <iframe src="http://localhost:4000/b.html" 
+    frameborder="0" 
+    id="frame" onload="load()"></iframe>
+    <script>
+      function load() {
+        let frame = document.getElementById("frame");
+        frame.contentWindow.postMessage("我爱你", "http://localhost:4000");
+      }
+      window.onmessage = function(e) {
+        console.log(e.data);
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+```js
+//a.js
+const Koa = require("koa");
+var app = new Koa(); //实例化
+
+const KoaStatic = require("koa-static");
+app.use(KoaStatic("./"));
+
+app.listen(3000);
+```
+
+```html
+<!-- b.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>b.html</title>
+  </head>
+  <body>
+    b.html
+    <script>
+      window.onmessage = function(e) {
+        console.log(e.data);
+        e.source.postMessage("我不爱你", e.origin);
+      };
+    </script>
+  </body>
+</html>
+
+```
+
+```js
+// b.js
+const Koa = require("koa");
+var app = new Koa(); //实例化
+
+const KoaStatic = require("koa-static");
+app.use(KoaStatic("./"));
+
+app.listen(4000);
+
+```
+
+
 
 

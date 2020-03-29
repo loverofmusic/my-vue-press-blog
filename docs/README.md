@@ -5,7 +5,7 @@ faceImage: '/vuepress/QR-code.png'
 heroImageStyle: {
   # maxWidth: '800px',
   # width: '800px',
-  height: '500px',
+  height: '450px',
   margin: 10px auto -20px,
   # width: '100%',
   # height: '15%',,
@@ -18,7 +18,7 @@ heroImageStyle: {
 }
 isShowTitleInHome: true
 actionText: '开始翻阅吧'
-actionLink: /accumulation/
+actionLink: /interview/
 # features:
 # - title: 
 #   details: 把所有的不快给昨天
