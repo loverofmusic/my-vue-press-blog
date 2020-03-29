@@ -16,10 +16,14 @@ module.exports = {
             collapsable: true,
             children:[
                 'javascript/overall.md',
-                'javascript/ts.md',
                 'javascript/prototype.md',
                 'javascript/closure.md',
-                'javascript/async.md'
+                'javascript/async.md',
+                'javascript/object.md',
+                'javascript/function.md',
+                'javascript/array.md',
+                'javascript/type-check.md',
+                'javascript/ts.md',
             ]
         },
         {

@@ -1,10 +1,9 @@
 ---
-title: 作用域和闭包
-date: 2018-12-02
+title: 函数
+date: 2019-06-12
 sidebarDepth: 0
 tags:
-- 作用域
-- 闭包
+- 函数 
 categories:
 - JavaScript
 isShowComments: true
