@@ -77,6 +77,7 @@ module.exports = {
             collapsable: true,
             children:[
                 'performance/overall.md',
+                'performance/cache.md',
                 'performance/throttle-debounce.md',
                 'performance/lazyload.md'
             ]
