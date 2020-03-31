@@ -9,7 +9,7 @@ categories:
 isShowComments: true
 ---
 
-## 对象拷贝
+### 一. 对象拷贝
 
 ### 相关前置知识点
 
@@ -152,4 +152,34 @@ Object.defineProperty(obj1, 'innumerable', {
 console.log(obj1)
 let str = JSON.stringify(obj1)
 let obj2 = JSON.parse(str)
+```
+
+```js
+const isComplexDataType = obj => {
+  return (typeof obj === 'object' || 
+    typeof obj === 'function') && 
+    (obj !== null)
+}
+
+const deepClone = function (obj, hash = new WeakMap()){
+
+  if (hash.has(obj)) return hash.get(obj)
+  let type = [Date, RegExp, Set, Map, WeakMap, WeakSet]
+  if (type.includes(obj.constructor)) return new obj.constructor(obj)
+  //如果成环了，参数 obj = obj.loop = 最初的obj 
+  // 会在WeakMap中找到第一次放入的obj提前返回第一次放入WeakMap的cloneObj
+
+  let allDesc = Object.getOwnPropertyDescriptors(obj)//遍历传入参数所有键的特性
+  let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc)//继承原型
+  hash.set(obj, cloneObj)
+
+  for (let key of Reflect.ownKeys(obj)) {
+    //Reflect.ownKeys(obj)可以拷贝 不可枚举属性和符号类型
+    //如果值是引用类型（非函数）则递归调用 deepClone
+    cloneObj[key] = (isComplexDataType(obj[key]) && typeof obj[key] !== 'function') 
+      ? deepClone(obj[key], hash) : obj[key];
+  }
+
+  return cloneObj;
+}
 ```
