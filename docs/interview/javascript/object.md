@@ -129,29 +129,29 @@ console.log(person1, person2);
 
 ```js
 //测试用例
-function Obj(){
-  this.func = fucntion () {
-    alert(1);
-  }
-  this.obj = { a: 1 };
-  this.arr = [1, 2,3]
-  this.und = undefined;
-  this.reg = /123/;
-  this.date = new Date(0);
-  this.NaN = NaN;
-  this.infinity = Infinity;
-  this.sym = Symbol(1);
-  this.set = new Set([1,2,3])
-  this.map = new Map([['a',1],['b',9]])
-}
-let obj1 = new Obj();
-Object.defineProperty(obj1, 'innumerable', {
-  enumerable:false,
-  value: "innumerable"
-})
-console.log(obj1)
-let str = JSON.stringify(obj1)
-let obj2 = JSON.parse(str)
+// function Obj(){
+//   this.func = fucntion () {
+//     alert(1);
+//   }
+//   this.obj = { a: 1 };
+//   this.arr = [1, 2,3]
+//   this.und = undefined;
+//   this.reg = /123/;
+//   this.date = new Date(0);
+//   this.NaN = NaN;
+//   this.infinity = Infinity;
+//   this.sym = Symbol(1);
+//   this.set = new Set([1,2,3])
+//   this.map = new Map([['a',1],['b',9]])
+// }
+// let obj1 = new Obj();
+// Object.defineProperty(obj1, 'innumerable', {
+//   enumerable:false,
+//   value: "innumerable"
+// })
+// console.log(obj1)
+// let str = JSON.stringify(obj1)
+// let obj2 = JSON.parse(str)
 ```
 
 ```js
