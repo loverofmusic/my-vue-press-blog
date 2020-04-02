@@ -9,7 +9,64 @@ categories:
 isShowComments: true
 ---
 
-### 一. 对象拷贝
+
+### 创建一个对象有哪几种方法，区别
+
+### new一个对象这个过程中发生了什么
+  1. 开辟一块内存空间用于存储一个空对象
+  2. （调用构造函数的call方法，将这个对象作为call方法的参数）这样this就指向这个空对象
+  3. 为这个对象设置属性（让__proto__属性值 = 构造函数的prototype属性值：
+  这样就能通过 隐式原型链 找到构造函数原型对象了）和方法
+  4. 返回这个对象
+
+### 遍历一个对象的方法有哪些？for in 能否遍历出原型对象 遍历一个对象里面所有key值
+  1. for ... in 循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).
+  2. Obejct.keys(obj),返回一个数组,包括对象自身的(不含继承的)所有可枚举属性(不含Symbol属性).
+  3. Object.getOwnPropertyNames(obj),返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性).
+  4. Object.getOwnPropertySymbols(obj),返回一个数组,包含对象自身的所有Symbol属性.
+  5. Reflect.ownKeys(obj),返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举.  
+  6. Reflect.enumerate(obj),返回一个Iterator对象,遍历对象自身的和继承的所有可枚举属性(不含Symbol属性),与for ... in 循环相同.
+
+### 对象转成数组有哪些方法
+::: details code
+```js
+const obj = {
+  a00001: "sfhhf",
+  b66668: {
+    abv: 6778
+  }
+};
+console.log(Object.entries(obj));
+const arr = [];
+for (let [k, v] of Object.entries(obj)) {
+  console.log(k, v);
+  arr.push({
+    id: k,
+    value: v
+  });
+}
+
+// for(let [k, v] of Object.entries(obj)){
+//   console.log([k, v])
+// }
+let obj2 = { '未完成': 5, '已完成': 8, '待确认': 4, '已取消': 6 };
+var arr2 = [];
+for (let i in obj2) {
+  let o = {};
+  o[i] = obj2[i];
+  arr2.push(o);
+}
+console.log(arr2);
+```
+:::
+
+### 合并对象
+
+### Object.defineProperty上面的一些方法 Object.hasOwnProperty proxy
+
+----------------------------------------------------------------------
+
+### 对象拷贝
 
 ### 相关前置知识点
 
@@ -26,14 +83,14 @@ isShowComments: true
 > 首先要分清楚js两大类型：基本类型（number string boolean null undefined symbol bigint）和引用类型
 
 
-### 判断类型：
+#### 判断类型：
 - typeof 只能判断基本类型，引用类型只能判断出 function object， Array Set Map RegExp Date 都不行。。。。
 
 - nstanceof 和原型链有关，原型链可以修改，所以也不靠谱；instanceof 判断的是 右边构造函数的原型 在不在 左边实例对象的原型链上
 
 - Object.prototype.toString.call(true) 这个是返回浏览器引擎内部的一个值（传的是什么类型 浏览器引擎已经给定义好了，你调这个方法就返回给你类型标识），是写在ECMA标准里面的，最准
 
-### 深拷贝实践
+## 深拷贝实践
 
 + 业务中最实用
 
@@ -43,11 +100,10 @@ let co = JSON.parse(JSON.stringify(obj));//但是 正则 函数 循环引用 等
 
 + 简单版
 
+::: details 这里是对象实例
 ```js
 // 值 的拷贝，引用值 的拷贝问题
-
 Object.prototype.num = 3;
-
 var person1 = {
   name: "zxcc",
   age: 39,
@@ -63,30 +119,16 @@ var person1 = {
   car: ["ben", "maz"]
 };
 
-// 对象浅拷贝：只考虑了值类型的拷贝，完全没有考虑引用值的拷贝问题，只拷贝栈里面的东西
+```
+:::
 
-// function clone(origin, target) {
-//   var tar = target || {};
-//   for (var key in origin) {
-//     if (origin.hasOwnProperty(key)) {
-//       //剔除原型上的key
-//       tar[key] = origin[key];
-//     }
-//   }
-//   return tar;
-// }
 
-// person2 = clone(person1);
-// person2.name = "zc";
-// person2.age = 43;
-// person2.car.push("byd");
-// person2.son.age = 23;
-// person2.son.first = "zzz";
-// person2.son.children.name = "lllllllll";
 
-// console.log(person1, person2);
 
-//对象深拷贝：拷贝出来的对象跟原来的对象 一毛钱关系都没有了，完全独立，应该是把栈和堆里面的东西都拷贝过来了
+
+```js
+//对象深拷贝：拷贝出来的对象跟原来的对象 一毛钱关系都没有了，
+// 完全独立，应该是把栈和堆里面的东西都拷贝过来了
 function deepClone(origin, target) {
   var tar = target || {};
   for (var key in origin) {
@@ -114,7 +156,14 @@ function deepClone(origin, target) {
   }
   return tar;
 }
+```
 
+
+
+
+
+::: details 这里是调用检测结果
+```js
 var person2 = deepClone(person1);
 person2.name = "zc";
 person2.age = 43;
@@ -124,35 +173,46 @@ person2.son.first = "zzz";
 person2.son.children.name = "lllllllll";
 console.log(person1, person2);
 ```
+:::
 
-+ 周密版
+
+
+
+
+::: details 对比浅拷贝
 
 ```js
-//测试用例
-// function Obj(){
-//   this.func = fucntion () {
-//     alert(1);
-//   }
-//   this.obj = { a: 1 };
-//   this.arr = [1, 2,3]
-//   this.und = undefined;
-//   this.reg = /123/;
-//   this.date = new Date(0);
-//   this.NaN = NaN;
-//   this.infinity = Infinity;
-//   this.sym = Symbol(1);
-//   this.set = new Set([1,2,3])
-//   this.map = new Map([['a',1],['b',9]])
-// }
-// let obj1 = new Obj();
-// Object.defineProperty(obj1, 'innumerable', {
-//   enumerable:false,
-//   value: "innumerable"
-// })
-// console.log(obj1)
-// let str = JSON.stringify(obj1)
-// let obj2 = JSON.parse(str)
+// 对象浅拷贝：只考虑了值类型的拷贝，完全没有考虑引用值的拷贝问题，只拷贝栈里面的东西
+
+function clone(origin, target) {
+  var tar = target || {};
+  for (var key in origin) {
+    if (origin.hasOwnProperty(key)) {
+      //剔除原型上的key
+      tar[key] = origin[key];
+    }
+  }
+  return tar;
+}
+
+person2 = clone(person1);
+person2.name = "zc";
+person2.age = 43;
+person2.car.push("byd");
+person2.son.age = 23;
+person2.son.first = "zzz";
+person2.son.children.name = "lllllllll";
+
+console.log(person1, person2);
 ```
+:::
+
+
+
+
+
+
++ 周密版
 
 ```js
 const isComplexDataType = obj => {
@@ -183,3 +243,32 @@ const deepClone = function (obj, hash = new WeakMap()){
   return cloneObj;
 }
 ```
+
+::: details 测试用例
+```js
+//测试用例
+function Obj(){
+  this.func = fucntion () {
+    alert(1);
+  }
+  this.obj = { a: 1 };
+  this.arr = [1, 2,3]
+  this.und = undefined;
+  this.reg = /123/;
+  this.date = new Date(0);
+  this.NaN = NaN;
+  this.infinity = Infinity;
+  this.sym = Symbol(1);
+  this.set = new Set([1,2,3])
+  this.map = new Map([['a',1],['b',9]])
+}
+let obj1 = new Obj();
+Object.defineProperty(obj1, 'innumerable', {
+  enumerable:false,
+  value: "innumerable"
+})
+console.log(obj1)
+let str = JSON.stringify(obj1)
+let obj2 = JSON.parse(str)
+```
+::: 

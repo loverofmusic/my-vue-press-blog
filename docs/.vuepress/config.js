@@ -5,7 +5,7 @@ const sidebar = require("./config/sidebar/");
 module.exports = {
   // dest: 'gb-pages',//打包目录
   base: "/my-vue-press-blog/",
-  title: "Nebulas的日志",
+  title: "岁月匆匆",
   description: "记录 · 所学 · 所思 · 所做",
   head: [
     ["link", { rel: "icon", href: "/vuepress/QR-code.png" }],
@@ -42,6 +42,7 @@ module.exports = {
     sidebar: "auto", // 自动形成侧边导航
     sidebar: sidebar,
     sidebarDepth: 3,
+    smoothScroll: true,
     blogConfig: {
       category: {
         location: 6, // 在导航栏菜单中所占的位置，默认2
