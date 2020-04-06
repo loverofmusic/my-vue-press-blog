@@ -18,7 +18,7 @@ heroImageStyle: {
 }
 isShowTitleInHome: true
 actionText: '开始翻阅吧'
-actionLink: /interview/
+actionLink: /system/
 # features:
 # - title: 
 #   details: 把所有的不快给昨天
