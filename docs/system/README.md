@@ -44,6 +44,8 @@ categories:
 
 ![interviewMap](/my-vue-press-blog/img/interview/interview.png)
 
+#### [当前博客码云访问地址](http://nebulas520.gitee.io/my-vue-press-blog)
+
 <!-- ::: danger
 这是一个危险警告
 :::

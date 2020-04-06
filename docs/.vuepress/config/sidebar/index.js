@@ -134,6 +134,11 @@ module.exports = {
   '/experience/': [
     '',
     {
+      title: '计划',
+      collapsable: false,
+      children: ['plan/front-end.md'],
+    },
+    {
       title: 'Mac',
       collapsable: false,
       children: ['Mac/shotcut.md', 'Mac/settings.md'],
