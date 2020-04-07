@@ -86,7 +86,7 @@ module.exports = {
     {
       title: '面试题',
       collapsable: true,
-      children: ['subject/console.md', 'subject/program.md', 'subject/classic.md'],
+      children: ['subject/console.md', 'subject/program.md', 'subject/classic.md','subject/questions.md'],
     },
   ],
   '/accumulation/': [

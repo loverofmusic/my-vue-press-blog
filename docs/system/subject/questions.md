@@ -1,5 +1,5 @@
 ---
-title: 常见问题
+title: 基础常见问题
 date: 2019-11-28
 sidebarDepth: 0
 tags:
@@ -18,11 +18,10 @@ isShowComments: true
 + 箭头函数和普通函数的区别/两者this指向问题
 + call apply bind 区别 用apply实现一个bind函数
 + js执行机制
-+ 闭包 场景
++ 闭包 场景 （[link](/system/javascript/closure.html)）
 + 原型 原型链 构造函数 实例对象 关系图
 + 深拷贝和浅拷贝区别 实现深拷贝的方案
 + 写出邮箱手机正则
-
 + for循环可以用什么代替
 + 数组去重有哪些方法（set有哪些好处）
 + 创建一个对象有哪几种方法
