@@ -10,7 +10,7 @@ categories:
 isShowComments: true
 ---
 
-### JavaScript基础测试
+### JavaScript基础手写题
 
 - 1.手写一个 new 操作符
 - 2.手写一个 JSON.stringify 和 JSON.parse

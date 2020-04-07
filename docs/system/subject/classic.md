@@ -28,19 +28,24 @@ if (flag) {
     console.log("yideng2"); 
   }
 }
+
+// undefined
+// Uncaught TypeError: yideng is not a function at <anonymous>:2:20
 ```
 
 ```js
 // 2.请写出如下输出值，并完成附加题的作答
 function fn(){
   console.log(this.length);
+  // console.log(this)//window
 }
 var yideng = {
   length:5,
   method:function(){
     "use strict";
-    fn();
-    arguments[0]() 
+    // console.log(this)//null
+    fn();//1 window.length
+    arguments[0]() //2 实参数
   }
 }
 const result = yideng.method.bind(null);
@@ -49,14 +54,18 @@ result(fn,1);
 
 ```js
 function yideng(a,b,c){
-  console.log(this.length); 
-  console.log(this.callee.length);
+  console.log(this.length); //4 ===arguments所在的函数实参个数：yideng,10,20,30
+  console.log(this.callee.length);//1 ===arguments所在的函数形参个数 就一个d
 }
 function fn(d){
-  arguments[0](10,20,30,40,50);
+  arguments[0](10,20,30,40,50);//arguments类数组‘对象’调的fn，this指的是arguments
 }
 fn(yideng,10,20,30);
 ```
+
+> arguments.length 是实参长度 <br>
+> arguments.callee.length 是形参长度 等同于 函数名.length
+
 
 ```js
 // 3.请问变量a会被GC回收么，为什么呢?
@@ -96,10 +105,17 @@ console.log(yideng.__proto__.__proto__.constructor.constructor.constructor);
 console.log(a)
 console.log(typeof test)
 console.log(b)
+
+// number
+// 1
+// function
+// Uncaught ReferenceError: b is not defined at <anonymous>:10:13
 ```
 
 ```js
 // 6.请写出你了解的ES6元编程。
+
+// Symbol、Reflect 和 Proxy
 
 ```
 
@@ -108,10 +124,10 @@ console.log(b)
 let a = 0;
 let yideng = async () => {
   a = a + await 10;
-  console.log(a)
+  console.log(a)//10
 }
 yideng();
-console.log(++a);
+console.log(++a);//1
 ```
 
 ```js
@@ -126,6 +142,11 @@ async function async2(){
 }
 async1();
 console.log(4)
+
+//1
+//2
+//4
+//3
 ```
 
 ```js
@@ -142,7 +163,7 @@ while (true) {
 ```
 
 ```js
-// 9.请先书写如下代码执行结果，并用ES5实现ES6 Promise A+规范的代码，同时你能解 释下如何使用Promise完成事物的操作么?
+// 9.请先书写如下代码执行结果，并用ES5实现ES6 Promise A+规范的代码，同时你能解释下如何使用Promise完成事物的操作么?
 const pro = new Promise((resolve, reject) => {
   const innerpro = new Promise((resolve, reject) => {
     setTimeout(() => { 
@@ -157,6 +178,12 @@ const pro = new Promise((resolve, reject) => {
 })
 pro.then(res => console.log(res));
 console.log("end");
+
+// 2
+// yideng
+// end
+// 3
+// 4
 ```
 
 ```js
@@ -169,10 +196,10 @@ for (var i = 0; i < 3; i++) {
   },tmp;
   if (i !== 2) {
     tmp = []
-    pusher.children = tmp
+    pusher.children = tmp//关键就在于 pusher.children 是 tmp 的引用（让pusher.children指向名字叫tmp的数组空间），后面又让arr指向这里
   }
-  arr.push(pusher);
-  arr = tmp;
+  arr.push(pusher);// pusher被push到了上次arr指向的空间，也就是上一次的pusher.children对应的值里面
+  arr = tmp;//arr指向名字叫tmp的数组空间
 }
 console.log(s[0]);
 ```
