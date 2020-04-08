@@ -24,4 +24,5 @@ categories:
 |  日期   | 每日一题  |   leetcode   | 博文  | 
 |  ----  | -------  | ------------ | ----  |
 | 2020-04-06  |       |[leetcode](https://github.com/loverofmusic/data-structure-algorithm/blob/master/code/string/1.js) | |
-| 2020-04-07  |   [base](/accumulation/2020/04/07.html)    |[leetcode](https://github.com/loverofmusic/data-structure-algorithm/blob/master/code/string/1.js) |[blog](/system/subject/classic.html) |
+| 2020-04-07  |   [base](/accumulation/2020/04/07.html)    | |[blog](/system/subject/classic.html) |
+| 2020-04-08  |   [base](/accumulation/2020/04/08.html)    | |[blog](/system/javascript/object.html) |
