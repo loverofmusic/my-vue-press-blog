@@ -25,7 +25,7 @@ isShowComments: true
 + for循环可以用什么代替
 + 数组去重有哪些方法（set有哪些好处）
 + 创建一个对象有哪几种方法
-+ new一个对象这个过程发生了什么
++ new一个对象这个过程发生了什么（[link](/system/javascript/object.html#new一个对象这个过程中发生了什么)）
 + JS中遍历对象的方法有哪些（for in 能否遍历出原型对象）
 + 多个对象合并成一个对象
 

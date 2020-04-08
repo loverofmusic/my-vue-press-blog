@@ -6,7 +6,7 @@ tags:
 - TypeScript 
 - 思维导图
 categories:
-- 面试题
+- JavaScript
 isShowComments: true
 ---
 

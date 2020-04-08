@@ -9,15 +9,237 @@ categories:
 isShowComments: true
 ---
 
+### 什么是对象？
+  + 多个数据的封装体
+  + 用来保存多个数据的容器
+  + 一个对象代表现实中的一个事物
 
-### 创建一个对象有哪几种方法，区别
+### 为什么要用对象？
+  + 统一管理多个数据
 
-### new一个对象这个过程中发生了什么
-  1. 开辟一块内存空间用于存储一个空对象
-  2. （调用构造函数的call方法，将这个对象作为call方法的参数）这样this就指向这个空对象
-  3. 为这个对象设置属性（让__proto__属性值 = 构造函数的prototype属性值：
-  这样就能通过 隐式原型链 找到构造函数原型对象了）和方法
+### 对象的组成？
+  + 属性：属性名（**`字符串`**）和属性值（任意类型）组成
+  + 方法： 一种特别的属性（属性值是函数）
+
+### 如何访问对象内部的数据？
+  + `.`属性名：有时不能用
+  + ['属性名']：通用，必须使用该种方式的情况：
+    - 属性名包含特殊字符：`-` 或 空格
+    ```js
+    p['content-type'] = 'text/json'
+    ```
+    - 属性名不确定，是个变量
+    ```js
+    var propName = 'zxcc' 
+    var value = 18
+    p[propName] = value
+    ```
+
+
+
+### 创建对象几种模式，区别？
+
++ Object构造函数
+  - 套路：new Object()创建空对象，再动态添加属性/方法
+  - 适用场景：起始时不确定对象内部数据
+  - 特点：语句多。。。
+  ```js
+  var p = new Object()
+  p.name = 'zxcc'
+  p.age = 18
+  p.setName = function (name) {
+    this.name = name
+  }
+  p.setName('nebulas')
+  ```
+
++ 对象字面量
+  - 套路：`{}`创建空对象，同时指定属性/方法
+  - 适用场景：起始时对象内部数据是确定的
+  - 特点：如果创建多个对象，有重复代码
+  ```js
+  var p = {
+    name: 'zxcc',
+    age: 18,
+    setName: function (name) {
+      this.name = name
+    }
+  }
+  p.setName('nebulas')
+  ```
+
++ 工厂函数
+  - 套路：工厂函数创建对象并返回
+  - 适用场景：需要创建多个对象
+  - 特点：对象没有一个具体类型，都是Object类型
+  ```js
+  function createPerson(name, age){//返回一个对象的函数=>工厂函数
+    var obj = {
+      name: name,
+      age: age,
+      setName: function(name){
+        this.name = name
+      }
+    }
+    return obj
+  }
+  var p1 = createPerson('Tom', 12)
+  var p2 = createPerson('Bob', 13)
+  p.setName('nebulas')
+  ```
+
++ 自定义构造函数
+  - 套路：自定义构造函数，通过new创建对象，对象属性在函数中初始化，共用的方法添加到原型上
+  - 适用场景：需要创建多个类型确定的对象
+  - 特点：灵活常用
+  ```js
+  //定义Person类型
+  function Person(name, age){// 通常构造函数首字母大写
+    this.name = name
+    this.age = age
+  }
+  Person.prototype.setName = function(name){
+    this.name = name
+  }
+  var p1 = new Person('zxcc', 18)
+  p1.setName('nebulas')
+  ```
+
++ Object.create(proto,[propertiesObject])
+  - 套路：这种方式比较不一样，是可以指定原型的！
+    - proto => 新创建对象的原型对象
+    - propertiesObject => 可选，添加属性并对属性作出详细解释(此详细解释类似于defineProperty第二个参数的结构）
+  - 适用场景：
+    - 需要一个非常干净且高度可定制的对象当作数据字典的时候
+    - 想节省hasOwnProperty带来的一丢丢性能损失并且可以偷懒少些一点代码的时候
+
+  > 高度可定制的具体代码体现：
+  ```js
+  const person = {
+    isHuman: false,
+    printIntroduction: function () {
+      console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+    }
+  };
+  let p = Object.create(person,{
+    //addr成为p的数据属性
+    addr:{
+        writable:true,
+        configurable:true,
+        enumerable: false,
+        value:'nanjing'
+    },
+    //type成为p的访问器属性
+    gender:{
+        // writable、configurable等属性，不显式设置则默认为false
+        get:function(){return 'female'},
+        set:function(value){"change this gender to",value}//变性
+    }
+  })
+  console.log(p)
+  ```
+  > 为什么说它干净，可以通过对比下面几种方法看出：
+  ```js
+  let o = Object.create(null,{
+    a: {
+        writable:true,
+        configurable:true,
+        value:'1'
+    }
+  })
+  console.log(o)
+  ```
+  ![create-null](/my-vue-press-blog/img/interview/create-null.jpg)
+  > 可以看到，新创建的对象除了自身属性a之外，原型链上没有任何属性，也就是没有继承Object的任何东西
+
+  ::: tip
+  将null改为`{}`，或者是`Object.prototype`结果是怎样的？在chrome控制台打印看看吧
+  :::
+
+  > 最后再来研究一下，Object.create的底层原理到底是什么？做了哪些事情？
+  
+  ```js
+  //伪代码描述
+  Object.create =  function (o) {
+    var F = function () {};
+    F.prototype = o;
+    return new F();
+  };
+  ```
+  ::: tip
+  1. 新建一个空的构造函数F
+  2. 让F.prototype属性指向参数对象obj
+  3. 返回一个F的实例
+  :::
+
+### new一个对象这个过程中发生了什么?
+
+> new 关键字 => 调用构造函数 => 实例化对象 <br>
+> 先来看下通常的应用：
+
+```js {17}
+// 定义构造函数
+function Person (name, age) {
+	this.name = name
+	this.age = age
+	this.say = function () {
+		console.log(`my name is ${this.name}, my age is ${this.age}`)
+	}
+}
+
+// 构造函数的原型属性和方法定义
+Person.prototype.gender = 'female'
+Person.prototype.protoSay = function () {
+	console.log('nice to meet you!')
+}
+
+// 实例化
+let p = new Person('zxcc', 18)
+console.log(p)
+
+// 当前实例属性
+console.log(p.name)
+console.log(p.age)
+// 当前实例方法
+p.say()
+// 原型属性
+console.log(p.gender)
+// 原型方法
+p.protoSay()
+```
+
+![new-obj](/my-vue-press-blog/img/interview/new-obj.jpg)
+
+> 通过new关键字实例化的对象p，具备了构造函数Person中this的属性：name、age，也具备了构造函数Person的原型prototype的属性gender和方法protoSay <br>
+> 那new关键字底层原理到底是什么？做了哪些事情？
+```js
+//伪代码描述
+var p = {}
+p.__proto__ = Person.prototype
+Person.call(p, 'zxcc', 18)
+```
+::: tip
+  1. 初始化新对象（开辟一块内存空间用于存储一个新的空对象）
+  2. 确定[原型链]()（这样就能通过 隐式原型链 找到构造函数原型对象 就能拿到原型上的东西，即给对象身上挂父亲的属性和方法）
+  3. 绑定[this]()，进行属性和方法的赋值操作（调用构造函数的call方法，将这个对象作为call方法的参数 这样[执行上下文]()中的this就指向这个空对象，即给对象身上挂自己的属性和方法）
   4. 返回这个对象
+::: 
+::: warning
++ 构造函数不用写return语句，自动return
++ 如果写了一个return ：
+  - 如果return这个基本类型值，无视这个return值，该return什么还是return什么,但是return阻止了构造函数的执行
+  - 如果return这个引用类型值，则返回该值
+:::
+
+
+
+
+
+
+
+
+
+
 
 ### 遍历一个对象的方法有哪些？for in 能否遍历出原型对象 遍历一个对象里面所有key值
   1. for ... in 循环遍历对象自身的和继承的可枚举属性(不含Symbol属性).

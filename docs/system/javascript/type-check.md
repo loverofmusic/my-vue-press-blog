@@ -5,6 +5,6 @@ sidebarDepth: 0
 tags:
 - 变量类型
 categories:
-- 变量类型
+- JavaScript
 isShowComments: true
 ---

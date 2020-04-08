@@ -17,15 +17,15 @@ module.exports = {
       collapsable: true,
       children: [
         'javascript/overall.md',
-        'javascript/prototype.md',
-        'javascript/closure.md',
         'javascript/async.md',
-        'javascript/object.md',
+        'javascript/closure.md',
         'javascript/function.md',
+        'javascript/prototype.md',
+        'javascript/object.md',   
         'javascript/array.md',
         'javascript/type-check.md',
-        'javascript/ts.md',
-      ],
+        'javascript/ts.md'
+      ]
     },
     {
       title: 'HTML/CSS相关',
