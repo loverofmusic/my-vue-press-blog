@@ -35,8 +35,6 @@ isShowComments: true
     p[propName] = value
     ```
 
-
-
 ### 创建对象几种模式，区别？
 
 + Object构造函数

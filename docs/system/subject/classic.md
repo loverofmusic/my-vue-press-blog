@@ -1,5 +1,5 @@
 ---
-title: 笔试题升级版
+title: js笔试题
 date: 2020-04-06
 sidebarDepth: 0
 tags:
@@ -12,25 +12,33 @@ isShowComments: true
 ```js
 // 1.请写出如下代码输出值，并解释为什么。
 console.log(a);
-console.log(typeof yideng(a));
+console.log(typeof fn(a));//// 里面不是改不了的吗？==============================================
 var flag = true;
 if (!flag) { 
-  var a = 1;
+  var a = 1;//不执行，但是有变量提升
 }
-if (flag) {
-  function yideng(a) {
-    yideng = a;
-    console.log("yideng1"); 
+if (flag) {//执行，函数声明会有提升
+  function fn(a) {
+    fn = a;
+    console.log("fn1"); 
   }
-} else {
-  function yideng(a) {
-    yideng = a;
-    console.log("yideng2"); 
+} else {//不执行，但是函数声明会有提升
+  function fn(a) {
+    fn = a;
+    console.log("fn2"); 
   }
 }
 
+// AO:{
+//    a: undefined,
+//    fn: function(a){ 
+//         fn = a;
+//         console.log("fn2");
+//    }
+// }
+
 // undefined
-// Uncaught TypeError: yideng is not a function at <anonymous>:2:20
+// Uncaught TypeError: fn is not a function at <anonymous>:2:20
 ```
 
 ```js
@@ -61,16 +69,16 @@ function fn(d){
   arguments[0](10,20,30,40,50);//arguments类数组‘对象’调的fn，this指的是arguments
 }
 fn(yideng,10,20,30);
-```
 
-> arguments.length 是实参长度 <br>
-> arguments.callee.length 是形参长度 等同于 函数名.length
+// arguments.length 是实参长度 <br>
+// arguments.callee.length 是形参长度 等同于 函数名.length
+```
 
 
 ```js
-// 3.请问变量a会被GC回收么，为什么呢?
+// 3.请问变量a会被GC回收么，为什么呢?======================================================
 function test(){
-  var a = "yideng";
+  var a = "zxcc";
   return function(){
     eval("");
   }
@@ -84,13 +92,19 @@ Object.prototype.a = 'a';
 Function.prototype.a = 'a1';
 function Person(){};
 
-var yideng = new Person();
-console.log(Person.a);
-console.log(yideng.a);
-console.log(1..a);
-console.log(1.a);
-console.log(yideng.__proto__.__proto__.constructor.constructor.constructor);
+var p = new Person();
+console.log(Person.a);//a1=======
+console.log(p.a);//a
+console.log(1..a);//a==============================================================
+console.log(1.a);//Uncaught SyntaxError: Invalid or unexpected token
+console.log(p.__proto__.__proto__.constructor.constructor.constructor);//ƒ Function() { [native code] }
 // Object.prototype 和 Function.prototype 打印的内容差距很大原因是什么呢?
+
+// p.__proto__ === Person.prototype
+// Person.prototype.__proto__ === Object.prototype
+// Object.prototype.constructor === Object
+// Object.constructor === Function
+// Function.constructor === Function
 ```
 
 ```js
