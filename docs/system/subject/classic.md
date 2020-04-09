@@ -87,13 +87,13 @@ test()();
 ```
 
 ```js
-// 4.清写出以下代码输出值，并解释原因。
+// 4. 写出以下代码输出值，并解释原因。
 Object.prototype.a = 'a';
 Function.prototype.a = 'a1';
 function Person(){};
 
 var p = new Person();
-console.log(Person.a);//a1=======
+console.log(Person.a);//a1
 console.log(p.a);//a
 console.log(1..a);//a==============================================================
 console.log(1.a);//Uncaught SyntaxError: Invalid or unexpected token
