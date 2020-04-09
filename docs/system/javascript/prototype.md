@@ -117,7 +117,6 @@ Object instanceof Function //true
   + 就是说 让子类的原型 指向 父类的 实例，并且 子类的实例本来就是指向子类原型的
   + 最后 就可以实现继承
 
-
 ```js {15,17}
 // 是谁的实例就能找到谁原型上的方法！！！
 // 比如，sub就是Sub的实例，就能找到Sub.prototype上的方法，同时Sub.prototype是Object的实例，就能找到Object.prototype上的方法
@@ -194,11 +193,11 @@ console.log(square instanceof Square);
 console.log(square instanceof Rectangle);
 ```
 :::tip
-+ 只调用了一次SuperType 构造函数，并且因此避免了在SubType.prototype 上创建不必要的、多余的属性
++ 只调用了一次父类构造函数，并且因此避免了在子类.prototype 上创建不必要的、多余的属性
 + 于此同时，原型链还能保持不变 因此，还能够正常使用instanceof 和isPrototypeOf()
 :::
 
-#### 8.ES6 extends 继承
+#### ES6 extends 继承
 
 ```JS
 // ES6 extends 继承
@@ -228,5 +227,20 @@ var square = new Square(2);
 ::: tip
 extends继承的核心代码如下，其实现和上述的 `寄生组合式` 继承方式一样
 :::
+
+总结一下几个重要的点：
+
+::: tip 
+1. 原型链：引用类型值相互影响、无法向父级构造函数传参
+2. 构造函数：解决原型链的问题，但破坏了复用性
+3. 组合式：原型链+借用构造函数(`共享的用原型链，各自的借用构造函数`），但调用了两次父级构造函数
+4. 原型式：解决原型链传参问题，并且无需使用构造函数，但也存在引用类型问题
+5. 寄生式：原型式的增强 类似于构造函数，每个实例对象都有一个副本——破坏了复用性
+6. 寄生组合式：寄生式+组合式，解决了各种问题
+:::
+
+[【JS系列】继承的这6种方式！(下)](https://juejin.im/post/5cbe8369e51d456e7e297bff)
+
+[【JS系列】继承的这6种方式！(上)](https://juejin.im/post/5cbdcccaf265da038145d85b)
 
 [JavaScript常用八种继承方案](https://juejin.im/post/5bcb2e295188255c55472db0)
