@@ -26,3 +26,5 @@ categories:
 | 2020-04-06  |       |[leetcode](https://github.com/loverofmusic/data-structure-algorithm/blob/master/code/string/1.js) | |
 | 2020-04-07  |   [base](/accumulation/2020/04/07.html)    | |[blog](/system/subject/classic.html) |
 | 2020-04-08  |   [base](/accumulation/2020/04/08.html)    | |[blog](/system/javascript/object.html) |
+| 2020-04-09  |   [base](/accumulation/2020/04/09.html)    | |[blog](/system/javascript/prototype.html) |
+

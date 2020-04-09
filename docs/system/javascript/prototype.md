@@ -1,10 +1,11 @@
 ---
 title: 原型&原型链&继承
-date: 2017-04-16
+date: 2020-04-09
 sidebarDepth: 0
 tags:
 - 原型
 - 原型链
+- 继承
 categories:
 - JavaScript
 isShowComments: true
@@ -106,6 +107,126 @@ Object instanceof Function //true
 ```
 
 ### 继承
-::: tip
-基于原型的继承
+
+[MDN继承与原型链](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+#### 1. 原型链继承（让子类的 原型 指向 父类的 实例）
+  + 想让子类的实例拿到父类原型上的方法
+  + 首先 原型上的方法 实例一定可以拿到
+  + 那么 父类的 实例 就可以拿到 父类原型上的方法
+  + 就是说 让子类的原型 指向 父类的 实例，并且 子类的实例本来就是指向子类原型的
+  + 最后 就可以实现继承
+
+
+```js {15,17}
+// 是谁的实例就能找到谁原型上的方法！！！
+// 比如，sub就是Sub的实例，就能找到Sub.prototype上的方法，同时Sub.prototype是Object的实例，就能找到Object.prototype上的方法
+//父类
+function Supper(){
+  this.supper = 'supper'
+}
+Supper.prototype.showSupperProp = function (){
+  console.log(this.supper)
+}
+//子类
+function Sub(){
+  this.sub = 'sub'
+}
+// 让子类的 原型 指向 父类的 实例
+Sub.prototype = new Supper()
+// 让子类原型的constructor指向子类
+Sub.prototype.constructor = Sub
+
+Sub.prototype.showSubProp = function (){
+  console.log(this.sub)
+}
+
+var sub = new Sub()
+sub.showSupperProp()
+sub.toString()
+```
+
+<!-- ![继承1](/my-vue-press-blog/img/interview/extends1.jpeg) -->
+
+#### 2. 构造函数继承
+  1. 定义父类构造函数
+  2. 定义子类构造函数
+  3. 在子类构造函数中调用父类构造函数
+```js
+function Person(name, age){
+  this.name = name
+  this.age = age
+}
+function Student(name, age, price){
+  Person.call(this.name, age)
+  this.price = price
+}
+```
+
+#### 3. 组合继承
++ 组合上述两种方法就是组合继承。
+  - 用`原型链`实现对`原型属性`和`方法`的继承
+  - 用借用`构造函数`技术来实现`实例属性`的继承。
+
+#### 6. 寄生组合式继承
+1. 创建对象，创建父类原型的一个副本
+2. 增强对象，弥补因 重写原型而失去的默认的constructor 属性
+3. 指定对象，将新创建的对象赋值给子类的原型
+```js
+function Rectangle(length, width){
+  this.l = length
+  this.w = width
+}
+Rectangle.prototype.getArea = function (){
+  return this.l * this.w
+}
+function Square(length){
+  Rectangle.call(this, length, length)
+}
+Square.prototype = Object.create(Rectangle.prototype, {
+  constructor: {
+    value: Square
+  }
+})
+var square = new Square(3);
+console.log(square.getArea())
+console.log(square instanceof Square);
+console.log(square instanceof Rectangle);
+```
+:::tip
++ 只调用了一次SuperType 构造函数，并且因此避免了在SubType.prototype 上创建不必要的、多余的属性
++ 于此同时，原型链还能保持不变 因此，还能够正常使用instanceof 和isPrototypeOf()
 :::
+
+#### 8.ES6 extends 继承
+
+```JS
+// ES6 extends 继承
+class Polygon {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+
+class Square extends Polygon {
+  constructor(sideLength) {
+    super(sideLength, sideLength);
+  }
+  get area() {
+    return this.height * this.width;
+  }
+  set sideLength(newLength) {
+    this.height = newLength;
+    this.width = newLength;
+  }
+}
+
+var square = new Square(2);
+```
+
+::: tip
+extends继承的核心代码如下，其实现和上述的 `寄生组合式` 继承方式一样
+:::
+
+[JavaScript常用八种继承方案](https://juejin.im/post/5bcb2e295188255c55472db0)

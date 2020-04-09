@@ -95,7 +95,8 @@ function Person(){};
 var p = new Person();
 console.log(Person.a);//a1
 console.log(p.a);//a
-console.log(1..a);//a==============================================================
+console.log(1..a);//a  1..a  数值后面的点 会被解释成小数点 而不是点运算符 
+//JavaScript 有多灵活？http://www.ruanyifeng.com/blog/2015/02/flexible-javascript.html
 console.log(1.a);//Uncaught SyntaxError: Invalid or unexpected token
 console.log(p.__proto__.__proto__.constructor.constructor.constructor);//ƒ Function() { [native code] }
 // Object.prototype 和 Function.prototype 打印的内容差距很大原因是什么呢?
@@ -136,12 +137,28 @@ console.log(b)
 ```js
 // 7.请按照下方要求作答，并解释原理?请解释下babel编译后的async原理
 let a = 0;
-let yideng = async () => {
+let test = async () => {
   a = a + await 10;
   console.log(a)//10
 }
-yideng();
+test();
 console.log(++a);//1
+
+// 在第一个await表达式出现之前，异步函数内部的代码都是按照同步方式执行的，记住这句话以后我们再继续往下看
+// 那么在test函数内部，哪些代码是按同步方式执行的呢？
+// 首先我们可以将x += await 10这行代码稍微变换一下形式，
+// 变换为：a = a + await 10，表达式右边的a是取值操作，并且按同步方式执行的，所以在执行到await时，右边的a已经取值完成，并且被取到的值0替换，然后才轮到test函数外的 ++a 这行代码执行，a += await 10 相当于a = 0 + await 10，所以最终输出：10
+```
+
+```js
+let x = 0;
+async function test() {
+    x = (await 2) + x;// 把await放在x前面
+    console.log(x);	 // 这里又输出什么？//3!!!
+}
+test();
+x = 1;
+// await会阻塞其所在表达式中后续表达式的执行
 ```
 
 ```js
@@ -164,7 +181,7 @@ console.log(4)
 ```
 
 ```js
-// 8.请问点击<buttion id=“test”></button>会有反应么?为什么?能解决么?
+// 8.请问点击<buttion id=“test”></button>会有反应么?为什么?能解决么?===================================================
 $('#test').click(function(argument) {
   console.log(1); 
 });
@@ -179,14 +196,16 @@ while (true) {
 ```js
 // 9.请先书写如下代码执行结果，并用ES5实现ES6 Promise A+规范的代码，同时你能解释下如何使用Promise完成事物的操作么?
 const pro = new Promise((resolve, reject) => {
+
   const innerpro = new Promise((resolve, reject) => {
     setTimeout(() => { 
       resolve(1);
     }) 
-    console.log(2); 
-    resolve(3);
+    console.log(2); //==================================================================================
+    resolve(3);// resolve => 放入异步队列
   })
-  innerpro.then(res => console.log(res)); 
+  innerpro.then(res => console.log(res)); //.then => 从异步队列取出来执行
+
   resolve(4);
   console.log("yideng");
 })
