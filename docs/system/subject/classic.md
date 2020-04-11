@@ -12,34 +12,103 @@ isShowComments: true
 ```js
 // 1.请写出如下代码输出值，并解释为什么。
 console.log(a);
-console.log(typeof fn(a));//// 里面不是改不了的吗？==============================================
+console.log(typeof fn(a));
 var flag = true;
 if (!flag) { 
-  var a = 1;//不执行，但是有变量提升
+  var a = 1;
 }
-if (flag) {//执行，函数声明会有提升
+if (flag) {
   function fn(a) {
     fn = a;
     console.log("fn1"); 
   }
-} else {//不执行，但是函数声明会有提升
+} else {
   function fn(a) {
     fn = a;
     console.log("fn2"); 
   }
 }
 
-// AO:{
-//    a: undefined,
-//    fn: function(a){ 
-//         fn = a;
-//         console.log("fn2");
-//    }
-// }
-
 // undefined
 // Uncaught TypeError: fn is not a function at <anonymous>:2:20
 ```
+::: tip
+1. hhh
+:::
+
+> 解析：
+::: detail
++ 依次执行验证：
+```js
+if(true){
+  function test(){
+    console.log(123)
+  }
+}
+test();//123; 
+```
+
+```js
+test();//test is not a function;;
+if(true){
+  function test(){
+    console.log(123)
+  }
+}
+```
+
+```js
+console.log("函数名", test)
+if(true){
+  function test(){
+    console.log(123)
+  }
+}
+console.log("函数体", test)
+```
+
+```js
+if(false){
+  function test(){
+    console.log(123)
+  }
+}
+test()//test is not a function; 
+```
+
+```js
+if(false){
+  function test(){
+    console.log(123)
+  }
+}
+console.log(test)//undefined; false的情况下，函数名提升出去了，但是没有函数体(没有赋值，因为没有执行if逻辑)
+```
+
+```js
+console.log(test)//undefined;
+if(false){
+  function test(){
+    console.log(123)
+  }
+}
+```
+:::
+
+```js
+var a = 0;
+if(true){
+  a = 1;
+  function a(){};
+  a = 21;
+  console.log(a)
+}
+console.log(a)
+```
+
+
+
+
 
 ```js
 // 2.请写出如下输出值，并完成附加题的作答
@@ -75,6 +144,11 @@ fn(yideng,10,20,30);
 ```
 
 
+
+
+
+
+
 ```js
 // 3.请问变量a会被GC回收么，为什么呢?======================================================
 function test(){
@@ -85,6 +159,10 @@ function test(){
 }
 test()();
 ```
+
+
+
+
 
 ```js
 // 4. 写出以下代码输出值，并解释原因。
@@ -108,6 +186,11 @@ console.log(p.__proto__.__proto__.constructor.constructor.constructor);//ƒ Func
 // Function.constructor === Function
 ```
 
+
+
+
+
+
 ```js
 // 5.请写出如下代码执行结果
 {
@@ -127,12 +210,22 @@ console.log(b)
 // Uncaught ReferenceError: b is not defined at <anonymous>:10:13
 ```
 
+
+
+
+
+
 ```js
 // 6.请写出你了解的ES6元编程。
 
 // Symbol、Reflect 和 Proxy
 
 ```
+
+
+
+
+
 
 ```js
 // 7.请按照下方要求作答，并解释原理?请解释下babel编译后的async原理
@@ -180,6 +273,10 @@ console.log(4)
 //3
 ```
 
+
+
+
+
 ```js
 // 8.请问点击<buttion id=“test”></button>会有反应么?为什么?能解决么?===================================================
 $('#test').click(function(argument) {
@@ -192,6 +289,11 @@ while (true) {
   console.log(Math.random());
 }
 ```
+
+
+
+
+
 
 ```js
 // 9.请先书写如下代码执行结果，并用ES5实现ES6 Promise A+规范的代码，同时你能解释下如何使用Promise完成事物的操作么?
@@ -219,6 +321,11 @@ console.log("end");
 // 4
 ```
 
+
+
+
+
+
 ```js
 // 10.请写出如下输出值，并解释为什么。
 var s = [];
@@ -236,6 +343,11 @@ for (var i = 0; i < 3; i++) {
 }
 console.log(s[0]);
 ```
+
+
+
+
+
 
 ```js
 // 【附加题】.请描述你理解的函数式编程，并书写如下代码结果。那么你能使用 Zone+RX 写出一段FRP的代码么?
