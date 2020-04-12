@@ -74,7 +74,7 @@ module.exports = {
       children: ['safety/xss', 'safety/csrf'],
     },
     {
-      title: '管理运维相关',
+      title: 'DevOps相关',
       collapsable: true,
       children: ['devops/QA.md', 'devops/docker.md', 'devops/git.md', 'devops/pm2.md'],
     },
