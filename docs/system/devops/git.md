@@ -30,7 +30,7 @@ isShowComments: true
 + 团队和外部协作
 ![git remote](/my-vue-press-blog/img/interview/git_remote.jpeg)
 
-### Git命令行操作（git help [命令]查看文档）
+### Git命令行操作（git help [命令]：查看文档）
 #### 本地库操作
 + **初始化**
   - <span class="green">git init</span>
@@ -52,6 +52,7 @@ isShowComments: true
               - git config --global user.name 用户名
               - git config --global user.email 邮件地址
               - 信息保存位置：～/.gitconfig 文件
+              - git config --global --list
 + **基本操作**
   1. 查看状态（相对于工作区、暂存区而言）
       - <span class="green">git status</span>: 查看工作区、暂存区状态
@@ -67,7 +68,7 @@ isShowComments: true
       - <span class="green">git commit -m "commit message"</span> [file name]: 将暂存区的内容提交到本地库
   4. 查看历史记录（相对于本地库而言）
       - <span class="green">git log</span> / git log --pretty=oneline / git log --oneline / 
-      - <span class="green">git reflog</span>（包括已经被删除的 commit 记录和 reset 的操作）
+      - <span class="green">git reflog</span>（包括已经被删除的 commit 记录和 reset 的操作 和 切换分支等所有本地操作）
   5. 前进后退历史版本（本质就是操作HEAD指针）
       - 基于索引值操作（`推荐`）: <span class="green">git reset --hard</span> [索引值]
       ![](/my-vue-press-blog/img/interview/git_reset_hard.jpeg)
@@ -93,6 +94,9 @@ isShowComments: true
           - 工作区和暂存区比较
       - git diff [本地库中历史版本] [文件名]
           - 将工作区中的文件和本地库历史记录比较
+  8. 缓存
+      - <span class="green">git stash</span>
+          - 假设当前在master分支上开发一些功能，尚未完成，需要切换到其他分支看看，又不想本地修改add commit到版本库，就可以使用stash保存，这样这个分支干净之后，就可以切换分支了，看完再切回master之后，使用 <span class="green">git stash apply</span>/pop 找回缓存区代码
 + **分支操作**
   1. 创建分支
       - <span class="green">git branch [分支名]</span> 
@@ -109,10 +113,14 @@ isShowComments: true
       1. 编辑冲突文件，删除特殊符号，协商修改，保存退出
       2. git add [文件名]
       3. git commit -m "message log" (`不能加文件名`)
+  6. 删除分支
+      - <span class="green">git branch -D [分支名]</span>
+  7. 创建并切换分支
+      - <span class="green">git checkout -b [分支名]</span> （从当前分支复制一份代码到新创建的分支，然后切换到新分支）
 
 #### 远程库操作
   1. 查看远程库地址别名
-      - git remote -v
+      - <span class="green">git remote -v</span>
   2. 本地创建`远程库地址别名`
       - <span class="green">git remote add [origin/别名] [远程库地址]</span>
   3. 推送
@@ -130,6 +138,11 @@ isShowComments: true
       - <span class="green">git fetch [别名] [分支]</span> + <span class="green">git merge [别名/分支]</span>
       - <span class="green">git pull [别名] [分支]</span>
 
+::: tip SSH key方式与GitHub通信
+1. 检查SSH keys是否存在: `ls -al ~/.ssh`(如果有文件id_rsa.pub 或 id_dsa.pub，则直接进入步骤3将SSH key添加到GitHub中，否则进入第二步生成SSH key)
+2. 生成ssh key: `ssh-keygen -t rsa -C "your_email@example.com"`（GitHub邮箱）
+3. 将ssh key添加到GitHub中
+:::
 
 [彻底搞懂 Git-Rebase](http://jartto.wang/2018/12/11/git-rebase/)
 
