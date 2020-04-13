@@ -137,6 +137,8 @@ isShowComments: true
       - `pull = fetch + merge`
       - <span class="green">git fetch [别名] [分支]</span> + <span class="green">git merge [别名/分支]</span>
       - <span class="green">git pull [别名] [分支]</span>
+  6. 拉取远程新分支到本地分支
+      - git fetch origin feature:dev1(左边是远程新分支，右边dev1本地分支不存在则自动新建)
 
 ::: tip SSH key方式与GitHub通信
 1. 检查SSH keys是否存在: `ls -al ~/.ssh`(如果有文件id_rsa.pub 或 id_dsa.pub，则直接进入步骤3将SSH key添加到GitHub中，否则进入第二步生成SSH key)
