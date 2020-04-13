@@ -30,7 +30,7 @@ isShowComments: true
 + 团队和外部协作
 ![git remote](/my-vue-press-blog/img/interview/git_remote.jpeg)
 
-### Git命令行操作
+### Git命令行操作（git help [命令]查看文档）
 #### 本地库操作
 + 初始化
   - <span class="green">git init</span>
@@ -53,7 +53,7 @@ isShowComments: true
               - git config --global user.email 邮件地址
               - 信息保存位置：～/.gitconfig 文件
 + 基本操作
-  1. 状态查看
+  1. 查看状态（相对于工作区、暂存区而言）
       - <span class="green">git status</span>: 查看工作区、暂存区状态
   2. 添加
       - <span class="green">git add</span> [file name] / `git add .`: 将工作区的 新建/修改 添加到暂存区
@@ -65,13 +65,19 @@ isShowComments: true
 
   3. 提交
       - <span class="green">git commit -m "commit message"</span> [file name]: 将暂存区的内容提交到本地库
-  4. 查看历史记录
+  4. 查看历史记录（相对于本地库而言）
       - <span class="green">git log</span> / git log --pretty=oneline / git log --oneline / 
       - <span class="green">git reflog</span>（包括已经被删除的 commit 记录和 reset 的操作）
   5. 前进后退历史版本（本质就是操作HEAD指针）
-      - 基于索引值操作（`推荐`）
-      - 使用`^`符号
-      - 使用`~`符号 
+      - 基于索引值操作（`推荐`）: <span class="green">git reset --hard</span>  [索引值]
+      ![](/my-vue-press-blog/img/interview/git_reset_hard.jpeg)
+      - 使用`^`符号：一个符号只能`后退`一步 (git reset --hard HEAD^^^ 后退三步)
+      - 使用`~`符号：`后退` (git reset --hard HEAD~3 后退三步)
+      ::: tip
+        1. --soft 参数：仅仅在本地库移动HEAD指针
+        2. --mixed 参数：在本地库移动HEAD指针 + 重置暂存区
+        3. --hard 参数：在本地库移动HEAD指针 + 重置暂存区 + 重置工作区
+      :::
 + 分支管理
 
 #### 远程库操作
