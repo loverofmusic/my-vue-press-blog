@@ -42,7 +42,7 @@ isShowComments: true
       - 作用：
           - 区分不同开发人员的身份
       - 辨析：
-          - 这里设置的签名和登录远程库（代码托管中心）的账号密码没有没有关系
+          - 这里设置的签名和登录远程库（代码托管中心）的账号密码没有关系
       - 命令：
           -  项目级别/仓库级别：仅在当前本地库范围内有效(`git config`)
               - git config user.name 用户名
@@ -111,6 +111,24 @@ isShowComments: true
       3. git commit -m "message log" (`不能加文件名`)
 
 #### 远程库操作
+  1. 查看远程库地址别名
+      - git remote -v
+  2. 本地创建`远程库地址别名`
+      - <span class="green">git remote add [origin/别名] [远程库地址]</span>
+  3. 推送
+      - <span class="green">git push [origin/别名] [master/分支]</span>
+  4. 克隆
+      - <span class="green">git clone [远程库地址]</span>
+      :::tip
+        1. 完整的把远程库下载到本地
+        2. 创建 origin 远程库地址别名
+        3. 初始化本地库
+        4. 如果团队外成员要push的话，先要邀请加入团队
+      :::
+  5. 拉取远程库的修改
+      - `pull = fetch + merge`
+      - <span class="green">git fetch [别名] [分支]</span> + <span class="green">git merge [别名/分支]</span>
+      - <span class="green">git pull [别名] [分支]</span>
 
 
 [彻底搞懂 Git-Rebase](http://jartto.wang/2018/12/11/git-rebase/)
