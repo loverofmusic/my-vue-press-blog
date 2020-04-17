@@ -25,11 +25,13 @@ isShowComments: true
 ### 强缓存
 `不会向服务器发送请求`，直接从缓存中读取资源，在chrome控制台的Network选项中可以看到该请求返回200的状态码，并且Size显示from disk cache或from memory cache。<br>
 强缓存可以通过设置两种 HTTP Header 实现：Expires 和 Cache-Control。
+> Expires 是http1.0的产物，Cache-Control是http1.1的产物，两者同时存在的话，Cache-Control优先级高于Expires；在某些不支持HTTP1.1的环境下，Expires就会发挥用处，现阶段它的存在只是一种兼容性的写法，同样还有一种pragma也只是一种兼容性的写法。
 
 ### 协商缓存
 协商缓存就是强制缓存失效后，浏览器携带缓存标识`向服务器发起请求`，由服务器根据缓存标识决定是否使用缓存的过程，主要有以下两种情况：
 + 协商缓存生效，返回304和Not Modified
 - 协商缓存失效，返回200和请求结果
+协商缓存可以通过设置两种 HTTP Header 实现：Last-Modified 和 ETag 
 
 ### 流程图：
 
