@@ -99,6 +99,7 @@ module.exports = {
           title: '4月',
           collapsable: false,
           children: [
+            '2020/04/16.md',
             '2020/04/14.md',
             '2020/04/13.md',
             '2020/04/12.md',
