@@ -16,7 +16,7 @@ isShowComments: true
 - 手写实现 Object.create 的基本原理
 - 手写一个 call 或 apply
 - 手写一个 Function.bind
-- 手写一个 JS深拷贝(由浅⼊入深多种解法)
+- 手写一个 JS深拷贝(由浅入深多种解法)
 - 手写 promise
 - 手写 实现拖拽
 - 手写 防抖(Debouncing) 和 节流(Throttling)
