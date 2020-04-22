@@ -99,9 +99,10 @@ module.exports = {
           title: '4月',
           collapsable: false,
           children: [
-            '2020/04/promise.md',
+            '2020/04/22.md',
             '2020/04/21.md',
             '2020/04/20.md',
+            '2020/04/promise.md',
             '2020/04/16.md',
             '2020/04/14.md',
             '2020/04/13.md',
