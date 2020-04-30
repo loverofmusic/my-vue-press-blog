@@ -23,7 +23,7 @@ categories:
       + .ssh `ssh-keygen -t rsa -C "你自己起的名字" -f "你自己起的名字_key_rsa"`
 
   2. 上传配置公钥
-      + 上传公钥到服务器对应账号的home路径下的.ssh/中 ( `ssh-copy-id -i "公钥文件名(你自己起的名字_key_rsa.pub)`" 用户名@服务器ip或域名 ) 
+      + 上传公钥到服务器对应账号的home路径下的.ssh/中 ( `ssh-copy-id -i "公钥文件名(你自己起的名字_key_rsa.pub)" 用户名@服务器ip或域名` ) 
 
       :::tip
           + 执行成功之后，我们在服务器上查看/root/.ssh目录已经生成，并且多了一个名为authorized_keys的文件，里面保存的正是服务器上ssh-keygen生成的公钥.pub的内容
