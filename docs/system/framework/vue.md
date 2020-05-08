@@ -13,10 +13,12 @@ categories:
 
 ### Vue源码解析
 
-#### Vue 的 MVVM 响应式原理介绍
-
-#### 手写 Vue 的 MVVM 响应式代码（简单版）
-+ [GitHub demo链接]()
+#### 手写 Vue 的 MVVM 响应式原代码（简单版）
+:::tip
+采用数据劫持结合发布者-订阅者的方式，通过Object.defineProperty()来劫持各个属性的setter、getter，在数据变动时，发布消息给订阅者，触发相应的监听回调。
+:::
++ [GitHub demo链接](https://github.com/loverofmusic/Vue-MVVM-demo.git)
++ ![mvvm](/my-vue-press-blog/img/interview/mvvm.jpg)
 + 主要实现过程：
     + 入口函数的实现
     + 编译类 Compile 的实现
