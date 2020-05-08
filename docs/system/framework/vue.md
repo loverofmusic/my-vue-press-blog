@@ -11,12 +11,14 @@ categories:
   - vue
 ---
 
-### Vue源码解析
+## Vue源码解析
 
-#### 手写 Vue 的 MVVM 响应式原代码（简单版）
+### 手写 Vue 的 MVVM 响应式原代码（简单版）
+
 :::tip
 采用数据劫持结合发布者-订阅者的方式，通过Object.defineProperty()来劫持各个属性的setter、getter，在数据变动时，发布消息给订阅者，触发相应的监听回调。
 :::
+
 + [GitHub demo链接](https://github.com/loverofmusic/Vue-MVVM-demo.git)
 + ![mvvm](/my-vue-press-blog/img/interview/mvvm.jpg)
 + 主要实现过程：
@@ -25,6 +27,24 @@ categories:
     + 实现 Observer 劫持并监听所有属性
     + 实现观察者 Watcher 和 依赖收集器 Dep
     + 实现双向数据绑定和 Proxy 代理
++ 参照源码：
+    +  ![mvvm2](/my-vue-press-blog/img/interview/mvvm2.jpg)
+
+
+
+
+
+### Vue中是如何检测数组变化的？
++ 使用函数劫持的方式，`重写了数组的原型方法`
++ 将data中的数组，进行了原型链重写，指向了自己定义的数组原型方法，这样当调用数组API时，可以通知依赖更新，如果数组中包含引用类型，会对数组中的引用类型再次进行监控
+
+![vue-array](/my-vue-press-blog/img/interview/vue-array.jpg)
+
+
+
+
+
+### 为何Vue采用异步渲染？
 
 
 
