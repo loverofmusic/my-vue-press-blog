@@ -20,6 +20,17 @@ categories:
 | 区域截图（默认保存至桌面）              | ⌘⇧.  (Command + Shift + 4)          |
 | 全屏截图（默认保存至桌面）              | ⌘⇧.  (Command + Shift + 3)          |
 | 打开开发者工具              | Command + Option + i         |
+||||
+
+刷新vscode：
+Open the command palette (Ctrl + Shift + P) and execute the command:
+
+>Reload Window
+
+VsCode中使用Emmet神器快速编写HTML代码：
+
+https://www.cnblogs.com/summit7ca/p/6944215.html
+
 
 
 ### 常用命令行
