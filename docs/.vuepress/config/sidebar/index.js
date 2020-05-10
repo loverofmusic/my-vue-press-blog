@@ -21,11 +21,11 @@ module.exports = {
         'javascript/closure.md',
         'javascript/function.md',
         'javascript/prototype.md',
-        'javascript/object.md',   
+        'javascript/object.md',
         'javascript/array.md',
         'javascript/type-check.md',
-        'javascript/ts.md'
-      ]
+        'javascript/ts.md',
+      ],
     },
     {
       title: 'HTML/CSS相关',
@@ -76,7 +76,15 @@ module.exports = {
     {
       title: 'DevOps相关',
       collapsable: true,
-      children: ['devops/git.md','devops/docker.md','devops/jenkins.md', 'devops/ssh.md', 'devops/nginx.md', 'devops/pm2.md','devops/QA.md',  ],
+      children: [
+        'devops/git.md',
+        'devops/docker.md',
+        'devops/jenkins.md',
+        'devops/ssh.md',
+        'devops/nginx.md',
+        'devops/pm2.md',
+        'devops/QA.md',
+      ],
     },
     {
       title: '编程基础相关',
@@ -86,7 +94,12 @@ module.exports = {
     {
       title: '面试题',
       collapsable: true,
-      children: ['subject/console.md', 'subject/program.md', 'subject/classic.md','subject/questions.md'],
+      children: [
+        'subject/console.md',
+        'subject/program.md',
+        'subject/classic.md',
+        'subject/questions.md',
+      ],
     },
   ],
   '/accumulation/': [
@@ -113,8 +126,8 @@ module.exports = {
             '2020/04/09.md',
             '2020/04/08.md',
             '2020/04/07.md',
-            '2020/04/05.md', 
-            '2020/04/02.md'
+            '2020/04/05.md',
+            '2020/04/02.md',
           ],
         },
         {
@@ -173,7 +186,7 @@ module.exports = {
     {
       title: '正则',
       collapsable: false,
-      children: ['RegExp/common.md']
-    }
+      children: ['RegExp/common.md'],
+    },
   ],
 };
