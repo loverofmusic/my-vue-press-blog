@@ -18,3 +18,4 @@ categories:
 |(centos7)安装lsb_release 查看系统版本  | (yum install -y redhat-lsb) (lsb_release -a) |
 |     防火墙端口永久开启   | firewall-cmd --add-port=11005/tcp --permanent  |
 |     重启防火墙    | firewall-cmd --reload  |
+|查看ip|ip addr/ifconfig|
