@@ -76,7 +76,7 @@ module.exports = {
     {
       title: 'DevOps相关',
       collapsable: true,
-      children: ['devops/QA.md', 'devops/docker.md', 'devops/git.md', 'devops/pm2.md'],
+      children: ['devops/git.md','devops/docker.md','devops/jenkins.md', 'devops/ssh.md', 'devops/nginx.md', 'devops/pm2.md','devops/QA.md',  ],
     },
     {
       title: '编程基础相关',
