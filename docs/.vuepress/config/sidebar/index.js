@@ -51,7 +51,7 @@ module.exports = {
     {
       title: 'Node.js相关',
       collapsable: true,
-      children: ['framework/overall.md', 'framework/overall.md', 'framework/overall.md'],
+      children: ['nodejs/npm-package.md', 'nodejs/event-loop.md', 'nodejs/koa.md' ],
     },
     {
       title: '网络相关',

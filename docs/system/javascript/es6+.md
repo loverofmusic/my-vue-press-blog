@@ -9,6 +9,10 @@ categories:
 isShowComments: true
 ---
 
+
+### ES6 入门教程
+[《ECMAScript 6 入门教程》](https://es6.ruanyifeng.com/)
+
 ### 类的秘密
 
 - 内部工作机制就是原型操作（所以是语法糖）
