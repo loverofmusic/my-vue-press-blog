@@ -155,7 +155,7 @@ isShowComments: true
 + 删除本地某个标签 `git tag -d v1.0.0`
 + 删除远程某个标签 `git push origin -d v1.0.0`
 + 将本地标签一次性推到远程 `git push origin --tags`
-+ 将本地标签某个特定标签推到远程 `git push origin --tags`
++ 将本地标签某个特定标签推到远程 `git push origin v1.0.0`
 + 查看某一个标签的提交信息`git show v1.0.0`
 + 根据某个commit 创建本地分支`git checkout 039bf8b -b dev`
 
