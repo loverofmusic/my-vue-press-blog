@@ -146,6 +146,20 @@ isShowComments: true
 3. 将ssh key添加到GitHub中
 :::
 
+### 标签操作
++ 查看本地所有分支标签 `git tag -l`
++ 查看远程所有分支标签 `git ls-remote --tags`
++ 给当前分支打标签 `git tag v1.0.0`，`-m ""`加注释
++ 给某个特定commit版本打标签 `git tag v1.0.0 039bf8b`
+
++ 删除本地某个标签 `git tag -d v1.0.0`
++ 删除远程某个标签 `git push origin -d v1.0.0`
++ 将本地标签一次性推到远程 `git push origin --tags`
++ 将本地标签某个特定标签推到远程 `git push origin --tags`
++ 查看某一个标签的提交信息`git show v1.0.0`
++ 根据某个commit 创建本地分支`git checkout 039bf8b -b dev`
+
+
 [彻底搞懂 Git-Rebase](http://jartto.wang/2018/12/11/git-rebase/)
 
 

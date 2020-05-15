@@ -51,7 +51,7 @@ module.exports = {
     {
       title: 'Node.js相关',
       collapsable: true,
-      children: ['nodejs/npm-package.md', 'nodejs/event-loop.md', 'nodejs/koa.md' ],
+      children: ['nodejs/npm-package.md', 'nodejs/event-loop.md', 'nodejs/koa.md'],
     },
     {
       title: '网络相关',
@@ -84,6 +84,7 @@ module.exports = {
         'devops/nginx.md',
         'devops/pm2.md',
         'devops/QA.md',
+        'devops/deploy.md',
       ],
     },
     {
