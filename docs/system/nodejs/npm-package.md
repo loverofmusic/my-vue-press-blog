@@ -63,3 +63,19 @@ webpack-merge =>
 html-webpack-plugin
 extract-text-webpack-plugin => 抽取css
 
+
+"dependencies": {
+    "co": "^4.6.0",
+    "cross-env": "^7.0.2",
+    "koa": "^2.11.0",
+    "koa-simple-router": "^0.2.0",
+    "koa-static": "^5.0.0",
+    "koa-swig": "^2.2.1",
+    "lodash": "^4.17.15",
+    "module-alias": "^2.2.2"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.4",
+    "nodemon": "^2.0.3"
+  }
+
